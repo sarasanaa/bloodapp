@@ -4,6 +4,7 @@ import 'package:mana7yaha/NearPlaces.dart';
 import 'package:mana7yaha/profile.dart';
 import 'package:mana7yaha/mymap.dart';
 import 'package:mana7yaha/sidebar.dart';
+import 'package:mana7yaha/view/screens/fetch_blood.dart';
 
 class home extends StatefulWidget {
   @override
@@ -151,7 +152,7 @@ class _home extends State<home> {
                   InkWell(
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => AboutUs()));
+                          MaterialPageRoute(builder: (context) => FetchBlood()));
                     },
                     child: Container(
                       width: 100,

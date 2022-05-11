@@ -12,7 +12,40 @@ class Controller {
   static const String _database =
       'https://blood-donation-e61e7-default-rtdb.firebaseio.com/';
 
-  static Future fetchRequests(BuildContext context) async {
+  static navigatorGO(Widget rout, BuildContext context) =>
+      Navigator.push(context, MaterialPageRoute(builder: (context) => rout));
+
+  static Future<List<String>> fetchComments({required String id}) async {
+    List<String> comments = [];
+    http.Response response =
+        await http.get(Uri.parse(_database + 'request' + id+'.json'));
+
+    if (response.statusCode == 200) {
+      Map data = json.decode(response.body);
+      data.forEach((key, value) {
+        comments.add(value['content']);
+      });
+    }
+
+    return comments;
+  }
+
+  static Future<void> addComment(
+      {required String id, required String content}) async {
+    http.Response response = await http.post(
+        Uri.parse(_database + 'request' + id+'.json'),
+        body: json.encode({'content': content}));
+    print(response.statusCode);
+    print(response.body);
+    if (response.statusCode == 200) {
+      Fluttertoast.showToast(msg: 'تم اضافه تعليقك');
+    } else {
+      Fluttertoast.showToast(msg: 'حدث خطا ما');
+    }
+  }
+
+  static Future<List<FetchRequestsModel>> fetchRequests(
+      BuildContext context) async {
     List<FetchRequestsModel> data = [];
     http.Response response =
         await http.get(Uri.parse(_database + 'request.json'));
@@ -27,8 +60,10 @@ class Controller {
               date: value['date']),
         );
       });
+      return data;
     } else {
       Fluttertoast.showToast(msg: 'حدث خطا ما');
+      return data;
     }
   }
 

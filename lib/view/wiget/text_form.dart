@@ -4,14 +4,14 @@ class TextForm extends StatelessWidget {
   String hint;
   Widget? widget;
   bool? visibility;
-  TextEditingController controller;
+  TextEditingController? controller;
 
   TextForm({
     Key? key,
     required this.hint,
     this.widget,
     this.visibility,
-    required this.controller,
+     this.controller,
   }) : super(key: key);
 
   @override
@@ -24,7 +24,7 @@ class TextForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: TextField(
           obscureText: visibility ?? false,
-          controller: controller,
+          controller: controller??TextEditingController(),
           decoration: InputDecoration(
               hintText: hint,
               border: InputBorder.none,
