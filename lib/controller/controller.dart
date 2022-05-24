@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:mana7yaha/model/comment_model.dart';
 
 import '../model/fetch_requests.dart';
 
@@ -15,15 +16,15 @@ class Controller {
   static navigatorGO(Widget rout, BuildContext context) =>
       Navigator.push(context, MaterialPageRoute(builder: (context) => rout));
 
-  static Future<List<String>> fetchComments({required String id}) async {
-    List<String> comments = [];
+  static Future<List<CommentModel>> fetchComments({required String id}) async {
+    List<CommentModel> comments = [];
     http.Response response =
         await http.get(Uri.parse(_database + 'request' + id + '.json'));
 
     if (response.statusCode == 200) {
       Map data = json.decode(response.body);
       data.forEach((key, value) {
-        comments.add(value['content']);
+        comments.add(CommentModel(name: value['name'], content: value['content']));
       });
     }
 
@@ -31,12 +32,11 @@ class Controller {
   }
 
   static Future<void> addComment(
-      {required String id, required String content, required setState}) async {
+      {required String id, required String content, required setState,required String name}) async {
     http.Response response = await http.post(
         Uri.parse(_database + 'request' + id + '.json'),
-        body: json.encode({'content': content}));
-    print(response.statusCode);
-    print(response.body);
+        body: json.encode({'content': content,'name':name}));
+
     if (response.statusCode == 200) {
       Fluttertoast.showToast(msg: 'تم اضافه تعليقك');
       setState(() {});

@@ -4,9 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mana7yaha/controller/controller.dart';
 import 'package:mana7yaha/controller/my_sizer.dart';
+import 'package:mana7yaha/model/comment_model.dart';
 import 'package:mana7yaha/model/user_model.dart';
 
 import 'package:mana7yaha/view/wiget/text_form.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../model/user_model.dart';
 
@@ -21,8 +23,11 @@ class AddComment extends StatefulWidget {
 class _AddCommentState extends State<AddComment> {
   TextEditingController comment = TextEditingController();
 
+//minou@gmail.com
+  //minouchbab
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
+  String? name;
 
   @override
   void initState() {
@@ -33,8 +38,15 @@ class _AddCommentState extends State<AddComment> {
         .get()
         .then((value) {
       loggedInUser = UserModel.fromMap(value.data());
+      SharedPreferences.getInstance().then((value) => value.getString('name'));
       setState(() {});
     });
+  }
+
+  Future<String?> getSavedData({required String key}) async {
+    String? data = await SharedPreferences.getInstance()
+        .then((value) => value.getString(key));
+    return data;
   }
 
   @override
@@ -47,7 +59,7 @@ class _AddCommentState extends State<AddComment> {
           centerTitle: true,
           backgroundColor: Colors.red.shade800,
         ),
-        body: FutureBuilder<List<String>>(
+        body: FutureBuilder<List<CommentModel>>(
           future: Controller.fetchComments(id: widget.id ?? ''),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -72,6 +84,7 @@ class _AddCommentState extends State<AddComment> {
                               Controller.addComment(
                                 id: widget.id ?? '',
                                 content: comment.text,
+                                name: loggedInUser.Name ?? '',
                                 setState: setState,
                               );
 
@@ -111,8 +124,10 @@ class _AddCommentState extends State<AddComment> {
                                           'https://cdn-icons-png.flaticon.com/512/5073/5073415.png'),
                                       backgroundColor: Colors.white,
                                     ),
-                                    title: Text(" ${loggedInUser.Name}"),
-                                    subtitle: Text(snapshot.data![index]),
+                                    title:
+                                        Text(snapshot.data?[index].name ?? ''),
+                                    subtitle: Text(
+                                        snapshot.data?[index].content ?? ''),
                                   ),
                                 );
                         },
@@ -129,6 +144,7 @@ class _AddCommentState extends State<AddComment> {
                             Controller.addComment(
                               id: widget.id ?? '',
                               content: comment.text,
+                              name: loggedInUser.Name ?? '',
                               setState: setState,
                             );
 
