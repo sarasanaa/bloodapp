@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:mana7yaha/main.dart';
 
 class tawafok extends StatelessWidget {
   @override
@@ -11,8 +9,8 @@ class tawafok extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.redAccent,
-          title: Text("توافق الزمر الدموية",
+          backgroundColor: Colors.red.shade800,
+          title: const Text("توافق الزمر الدموية",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 25,
@@ -22,7 +20,7 @@ class tawafok extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Container(
                 height: 600,
                 child: Image.asset('images/tabaro3.jpg'),

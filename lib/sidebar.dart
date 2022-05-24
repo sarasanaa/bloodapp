@@ -4,10 +4,9 @@ import 'package:flutter/rendering.dart';
 import 'package:mana7yaha/AboutUs.dart';
 import 'package:mana7yaha/LoginPage.dart';
 import 'package:mana7yaha/NearPlaces.dart';
+import 'package:mana7yaha/demandeur.dart';
 import 'package:mana7yaha/profile.dart';
-import 'package:mana7yaha/NearPlaces.dart';
 import 'package:mana7yaha/tawafok.dart';
-import 'package:mana7yaha/welcome.dart';
 
 class sidebar extends StatelessWidget {
   @override
@@ -15,100 +14,106 @@ class sidebar extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Material(
-            borderRadius: BorderRadius.all(Radius.circular(50)),
+            borderRadius: const BorderRadius.all(Radius.circular(50)),
             child: Image.asset(
               "images/group 8.png",
               width: 100,
               height: 100,
             ),
           ),
-          SizedBox(height: 20),
-          Divider(),
+          const SizedBox(height: 20),
+          const Divider(),
           Directionality(
             textDirection: TextDirection.rtl,
             child: ListTile(
-              title: Text('الصفحة الرئيسية',
+              title: const Text('الصفحة الرئيسية',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                   )),
-              leading: Icon(
+              leading: const Icon(
                 Icons.home,
                 color: Colors.red,
                 size: 25,
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
+                    MaterialPageRoute(builder: (context) => const LoginPage()));
               },
             ),
           ),
           Directionality(
             textDirection: TextDirection.rtl,
             child: ListTile(
-              title: Text('حسابي الشخصي',
+              title: const Text('حسابي الشخصي',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                   )),
-              leading: Icon(
+              leading: const Icon(
                 Icons.account_box,
                 color: Colors.red,
                 size: 25,
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => profile()));
+                    MaterialPageRoute(builder: (context) => const profile()));
               },
             ),
           ),
           Directionality(
             textDirection: TextDirection.rtl,
             child: ListTile(
-              title: Text('الاشعارات',
+              title: const Text('بحث عن متبرع',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                   )),
-              leading: Icon(
-                Icons.notifications,
-                color: Colors.red,
-                size: 25,
-              ),
-              onTap: () => null,
-            ),
-          ),
-          Directionality(
-            textDirection: TextDirection.rtl,
-            child: ListTile(
-              title: Text('الأماكن الأقرب',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                  )),
-              leading: Icon(
-                Icons.place,
+              leading: const Icon(
+                Icons.search,
                 color: Colors.red,
                 size: 25,
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => NearPlaces()));
+                    MaterialPageRoute(builder: (context) => const demandeur()));
               },
             ),
           ),
-          Divider(),
+          const Divider(),
           Directionality(
             textDirection: TextDirection.rtl,
             child: ListTile(
-              title: Text(' توافق الدم',
+              title: const Text('الأماكن الأقرب',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                   )),
-              leading: Icon(
+              leading: const Icon(
+                Icons.place,
+                color: Colors.red,
+                size: 25,
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NearPlaces()));
+              },
+            ),
+          ),
+          const Divider(),
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: ListTile(
+              title: const Text(' توافق الدم',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black,
+                  )),
+              leading: const Icon(
                 Icons.bloodtype,
                 color: Colors.red,
                 size: 25,
@@ -122,32 +127,32 @@ class sidebar extends StatelessWidget {
           Directionality(
             textDirection: TextDirection.rtl,
             child: ListTile(
-              title: Text('حول التطبيق',
+              title: const Text('حول التطبيق',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                   )),
-              leading: Icon(
+              leading: const Icon(
                 Icons.info,
                 color: Colors.red,
                 size: 25,
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AboutUs()));
+                    MaterialPageRoute(builder: (context) => const AboutUs()));
               },
             ),
           ),
-          Divider(),
+          const Divider(),
           Directionality(
             textDirection: TextDirection.rtl,
             child: ListTile(
-              title: Text('تسجيل الخروج',
+              title: const Text('تسجيل الخروج',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                   )),
-              leading: Icon(
+              leading: const Icon(
                 Icons.logout,
                 color: Colors.red,
                 size: 25,
@@ -164,7 +169,7 @@ class sidebar extends StatelessWidget {
 
   Future<void> logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 }

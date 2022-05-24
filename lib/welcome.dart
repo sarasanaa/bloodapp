@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mana7yaha/DelayedAnimation.dart';
 import 'package:mana7yaha/LoginPage.dart';
-import 'package:mana7yaha/main.dart';
-import 'package:mana7yaha/sidebar.dart';
-import 'package:mana7yaha/signup.dart';
-
-import 'SocialPage.dart';
 
 class welcome extends StatelessWidget {
   @override
@@ -14,31 +8,31 @@ class welcome extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(
+          margin: const EdgeInsets.symmetric(
             vertical: 10,
             horizontal: 5,
           ),
           child: Column(
             children: [
-              SizedBox(height: 100),
-              Container(
+              const SizedBox(height: 100),
+              SizedBox(
                 height: 430,
                 child: Image.asset('images/group 4.png'),
               ),
-              SizedBox(height: 30),
-              Container(
+              const SizedBox(height: 30),
+              SizedBox(
                 height: 100,
                 child: Image.asset('images/2aya.jpg'),
               ),
-              SizedBox(height: 60),
-              Container(
+              const SizedBox(height: 60),
+              SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       primary: Colors.red.shade800,
-                      shape: StadiumBorder(),
-                      padding: EdgeInsets.all(10)),
-                  child: Text(
+                      shape: const StadiumBorder(),
+                      padding: const EdgeInsets.all(10)),
+                  child: const Text(
                     'ابدأ',
                     style: TextStyle(
                       fontFamily: 'Baloobhaijaan2',
@@ -50,7 +44,7 @@ class welcome extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SocialPage(),
+                        builder: (context) => LoginPage(),
                       ),
                     );
                   },

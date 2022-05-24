@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mana7yaha/AboutUs.dart';
-import 'package:mana7yaha/NearPlaces.dart';
+import 'package:mana7yaha/demandeur.dart';
 import 'package:mana7yaha/profile.dart';
 import 'package:mana7yaha/mymap.dart';
 import 'package:mana7yaha/sidebar.dart';
@@ -46,12 +45,15 @@ class _home extends State<home> {
                 children: <Widget>[
                   InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => mymap()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const mymap()));
                     },
                     child: Container(
                       width: 100,
-                      margin: EdgeInsets.only(left: 40.0, top: 50.0, right: 5),
+                      margin: const EdgeInsets.only(
+                          left: 40.0, top: 50.0, right: 5),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
@@ -64,43 +66,9 @@ class _home extends State<home> {
                             height: 65,
                             width: 60,
                           ),
-                          SizedBox(height: 7),
-                          Text(
+                          const SizedBox(height: 7),
+                          const Text(
                             "موقعي",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w300,
-                              fontFamily: 'BalooBhaijaan2',
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => profile()));
-                    },
-                    child: Container(
-                      width: 100,
-                      margin: EdgeInsets.only(left: 5, top: 50.0, right: 40),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white,
-                          border: Border.all(color: Colors.grey)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'images/blood (2).png',
-                            height: 60,
-                            width: 60,
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            "حسابي",
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 25,
@@ -117,11 +85,48 @@ class _home extends State<home> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => NearPlaces()));
+                              builder: (context) => const demandeur()));
                     },
                     child: Container(
                       width: 100,
-                      margin: EdgeInsets.only(
+                      margin:
+                          const EdgeInsets.only(left: 5, top: 50.0, right: 40),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                          border: Border.all(color: Colors.grey)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'images/blood (1).png',
+                            height: 60,
+                            width: 60,
+                          ),
+                          const SizedBox(height: 5),
+                          const Text(
+                            "البحث عن متبرع",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: 'BalooBhaijaan2',
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const FetchBlood()));
+                    },
+                    child: Container(
+                      width: 100,
+                      margin: const EdgeInsets.only(
                           left: 40.0, top: 5, right: 5, bottom: 40),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -135,9 +140,9 @@ class _home extends State<home> {
                             height: 60,
                             width: 60,
                           ),
-                          SizedBox(height: 5),
-                          Text(
-                            "تبرعاتي",
+                          const SizedBox(height: 5),
+                          const Text(
+                            "طلبات التبرع",
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 25,
@@ -151,12 +156,14 @@ class _home extends State<home> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => FetchBlood()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const profile()));
                     },
                     child: Container(
                       width: 100,
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                           left: 5, top: 5, right: 40, bottom: 40),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -166,16 +173,16 @@ class _home extends State<home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            'images/blood (1).png',
+                            'images/blood (2).png',
                             height: 60,
                             width: 60,
                           ),
-                          SizedBox(height: 5),
-                          Text(
-                            "البحث عن متلقين",
+                          const SizedBox(height: 5),
+                          const Text(
+                            "حسابي",
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 20,
+                              fontSize: 25,
                               fontWeight: FontWeight.w300,
                               fontFamily: 'BalooBhaijaan2',
                             ),

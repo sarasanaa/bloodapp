@@ -50,13 +50,13 @@ class _NearPlacesState extends State<NearPlaces> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.red.shade800,
-        title: Text("الأماكن الأقرب اليك"),
+        title: const Text("الأماكن الأقرب اليك"),
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 30, 10, 0),
         child: GridView.builder(
             itemCount: data.allstores.length,
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200,
               childAspectRatio: 3 / 2,
               crossAxisSpacing: 10,
@@ -71,23 +71,23 @@ class _NearPlacesState extends State<NearPlaces> {
                   children: [
                     Text(
                       data.allstores[index]['name'],
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         fontFamily: 'BalooBhaijaan2',
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.location_on),
+                        const Icon(Icons.location_on),
                         Text(
                           "${data.allstores[index]['distance'].round()}  KM  ",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,

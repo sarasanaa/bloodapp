@@ -79,7 +79,7 @@ class _mymapState extends State<mymap> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("موقعي"),
+          title: const Text("موقعي"),
           backgroundColor: Colors.red.shade800,
         ),
         body: Column(
@@ -90,8 +90,7 @@ class _mymapState extends State<mymap> {
                 Container(
                   height: MediaQuery.of(context).size.height * .75,
                   decoration: const BoxDecoration(
-                      border:
-                          const Border(bottom: BorderSide(color: Colors.grey))),
+                      border: Border(bottom: BorderSide(color: Colors.grey))),
                   child: Stack(
                     children: [
                       GoogleMap(
@@ -115,7 +114,7 @@ class _mymapState extends State<mymap> {
                           getUserAddress();
                         },
                       ),
-                      Align(
+                      const Align(
                           alignment: Alignment.center,
                           child: Icon(
                             Icons.location_on,
@@ -143,11 +142,11 @@ class _mymapState extends State<mymap> {
                                       : _placeMark!.locality == null
                                           ? _placeMark!.subLocality!
                                           : _placeMark!.locality!,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 8,
                                 ),
                                 Row(

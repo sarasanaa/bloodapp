@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mana7yaha/home.dart';
-import 'package:mana7yaha/user_model.dart';
+import 'package:mana7yaha/model/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class signup extends StatefulWidget {
   const signup({Key? key}) : super(key: key);
@@ -35,6 +36,7 @@ class _signupState extends State<signup> {
   final bloodEditingController = TextEditingController();
 
   bool _acceptedTermsAndConditions = false;
+
   void _toggleTermsAndConditions(bool? value) {
     setState(() {
       _acceptedTermsAndConditions = !_acceptedTermsAndConditions;
@@ -201,7 +203,7 @@ class _signupState extends State<signup> {
         ));
 
     final bloodField = DropdownButtonFormField(
-        decoration: InputDecoration(),
+        decoration: const InputDecoration(),
         value: dropDownValue,
         hint: const Text("اختر زمرة الدم"),
         items: _bloodGroup.map((_selected) {
@@ -225,20 +227,20 @@ class _signupState extends State<signup> {
             this._categorySelected = true;
           });
         });
-    SizedBox(
+    const SizedBox(
       height: 10.0,
     );
     Text(
       _selected,
-      style: TextStyle(
+      style: const TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 20.0,
-        color: Color.fromARGB(1000, 221, 46, 68),
+        color: const Color.fromARGB(1000, 221, 46, 68),
       ),
     );
     final placeField = DropdownButtonFormField(
         value: dropDownValPlace,
-        decoration: InputDecoration(),
+        decoration: const InputDecoration(),
         hint: const Text("اختر البلدية"),
         items: const [
           DropdownMenuItem(
@@ -328,12 +330,12 @@ class _signupState extends State<signup> {
       borderRadius: BorderRadius.circular(30),
       color: Colors.red.shade800,
       child: MaterialButton(
-          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
             signUp(emailEditingController.text, passwordEditingController.text);
           },
-          child: Text(
+          child: const Text(
             "تسجيل",
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -345,12 +347,12 @@ class _signupState extends State<signup> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("إنشاء حساب جديد"),
+          title: const Text("إنشاء حساب جديد"),
           centerTitle: true,
           elevation: 4.0,
           backgroundColor: Colors.red.shade800,
           leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
               size: 30,
@@ -378,36 +380,36 @@ class _signupState extends State<signup> {
                             "images/group 8.png",
                             width: 110,
                           )),
-                      SizedBox(height: 45),
+                      const SizedBox(height: 45),
                       NameField,
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       phoneField,
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       emailField,
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       ageField,
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       passwordField,
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       confirmPasswordField,
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       bloodField,
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       placeField,
-                      SizedBox(height: 24),
+                      const SizedBox(height: 24),
                       Row(
                         children: [
                           Checkbox(
                             value: _acceptedTermsAndConditions,
                             onChanged: _toggleTermsAndConditions,
                           ),
-                          Flexible(
-                            child: Text(
+                          const Flexible(
+                            child: const Text(
                                 "وزني فوق 50 و لا اعاني من امراض مزمنة او معدية"),
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       signUpButton,
                     ],
                   ),
@@ -421,36 +423,40 @@ class _signupState extends State<signup> {
   }
 
   void signUp(String email, String password) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
     if (_formKey.currentState!.validate() && _acceptedTermsAndConditions) {
       try {
         await _auth
             .createUserWithEmailAndPassword(email: email, password: password)
-            .then((value) => {postDetailsToFirestore()})
-            .catchError((e) {
+            .then((value) {
+          postDetailsToFirestore();
+          preferences.setString('email', email);
+          preferences.setString('password', password);
+        }).catchError((e) {
           Fluttertoast.showToast(msg: e!.message);
         });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
           case "invalid-email":
-            errorMessage = "Your email address appears to be malformed.";
+            errorMessage = "خطأ في البريد الالكتروني";
             break;
           case "wrong-password":
-            errorMessage = "Your password is wrong.";
+            errorMessage = "خطأ في كلم السر";
             break;
           case "user-not-found":
-            errorMessage = "User with this email doesn't exist.";
+            errorMessage = "لا يوجد هدا البريد الالكتروني";
             break;
           case "user-disabled":
-            errorMessage = "User with this email has been disabled.";
+            errorMessage = "لا يمكن تسجيل بهدا البريد الالكتروني";
             break;
           case "too-many-requests":
             errorMessage = "Too many requests";
             break;
           case "operation-not-allowed":
-            errorMessage = "Signing in with Email and Password is not enabled.";
+            errorMessage = "التسجيل بهدا البريد غير ممكن";
             break;
           default:
-            errorMessage = "An undefined Error happened.";
+            errorMessage = "حدث خطب ما";
         }
         Fluttertoast.showToast(msg: errorMessage!);
         print(error.code);

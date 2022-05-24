@@ -43,8 +43,9 @@ dependencies:
   location: ^4.3.0
   geolocator: ^8.2.0
   http:
-  firebase_messaging: ^11.3.0
+  shared_preferences:
   intl: ^0.17.0
+  url_launcher:
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -78,11 +79,7 @@ flutter:
     - images/sang1.jpg
     - images/blood (1).png
     - images/blood (2).png
-    - images/blood-drop.png
-    - images/blood.png
     - images/clipboard.png
-    - images/photo1.png
-    - images/statistic.png
     - images/donorid.png
     - images/placeholder.png
 

@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
           color: Colors.grey[400],
         ),
         suffixIcon: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.email,
             color: Colors.black,
           ),
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         labelText: 'كلمة السر',
         suffixIcon: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.visibility,
             color: Colors.black,
           ),
@@ -107,12 +107,12 @@ class _LoginPageState extends State<LoginPage> {
       borderRadius: BorderRadius.circular(30),
       color: Colors.red.shade800,
       child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
           signIn(emailController.text, passwordController.text);
         },
-        child: Text(
+        child: const Text(
           'دخول',
           style: TextStyle(
             fontFamily: 'Baloobhaijaan2',
@@ -127,12 +127,12 @@ class _LoginPageState extends State<LoginPage> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("تسجيل الدخول"),
+          title: const Text("تسجيل الدخول"),
           centerTitle: true,
           backgroundColor: Colors.red.shade800,
           elevation: 4.0,
           leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
               size: 30,
@@ -175,9 +175,9 @@ class _LoginPageState extends State<LoginPage> {
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
-                              SizedBox(height: 5),
-                              Text(
-                                "سجل بياناتك كمتبرع الان",
+                              const SizedBox(height: 5),
+                              const Text(
+                                "سجل بياناتك الان",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: 'Baloobhaijaan2',
@@ -185,11 +185,11 @@ class _LoginPageState extends State<LoginPage> {
                                   fontSize: 15,
                                 ),
                               ),
-                              SizedBox(height: 40),
+                              const SizedBox(height: 40),
                               emailField,
-                              SizedBox(height: 25),
+                              const SizedBox(height: 25),
                               passwordField,
-                              SizedBox(height: 15),
+                              const SizedBox(height: 15),
                               Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -201,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 builder: (context) =>
                                                     ResetScreen()));
                                       },
-                                      child: Text(
+                                      child: const Text(
                                         "نسيت كلمة السر ؟",
                                         style: TextStyle(
                                             color: Colors.redAccent,
@@ -210,22 +210,22 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                     )
                                   ]),
-                              SizedBox(height: 17),
+                              const SizedBox(height: 17),
                               loginButton,
-                              SizedBox(height: 15),
+                              const SizedBox(height: 15),
                               Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text("لم تسجل بعد ؟ "),
+                                    const Text("لم تسجل بعد ؟ "),
                                     GestureDetector(
                                       onTap: () {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    signup()));
+                                                    const signup()));
                                       },
-                                      child: Text(
+                                      child: const Text(
                                         "انشاء حساب جديد",
                                         style: TextStyle(
                                             color: Colors.redAccent,
